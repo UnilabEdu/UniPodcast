@@ -1,7 +1,5 @@
 
-
-
-from src.admin_views.base import SecureModelView
+from src.admin_views import SecureModelView
 
 class CategoryView(SecureModelView):
     can_create = True

@@ -6,11 +6,11 @@ class BaseModel(db.Model):
 
     id = db.Column(db.Integer,primary_key=True)
 
-    # def create(self,commit=True):
-    #     db.session.add(self)
+    def create(self,commit=True):
+        db.session.add(self)
 
-    #     if commit:
-    #         self.save()
+        if commit:
+            self.save()
 
-    # def save(self):
-    #     db.session.commit()
+    def save(self):
+        db.session.commit()

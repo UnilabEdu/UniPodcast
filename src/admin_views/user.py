@@ -1,6 +1,6 @@
 
 
-from src.admin_views.base import SecureModelView
+from src.admin_views import SecureModelView
 
 
 class UserView(SecureModelView):

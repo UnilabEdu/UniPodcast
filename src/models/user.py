@@ -1,6 +1,6 @@
 
 from src.ext import db
-from src.models.base import BaseModel
+from src.models import BaseModel
 
 class User(BaseModel):
     __tablename__ ='users'
@@ -10,4 +10,4 @@ class User(BaseModel):
     password = db.Column(db.String,nullable=False)
     
     role = db.Column(db.String, default='user')
-    # თუ მომავალში სგახდება საჭირო როლების დამატება
+   

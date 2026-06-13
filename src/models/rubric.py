@@ -1,5 +1,5 @@
 from src.ext import db
-from src.models.base import BaseModel
+from src.models import BaseModel
 
 class Rubric(BaseModel):
     __tablename__ = 'rubric'
@@ -11,7 +11,7 @@ class Rubric(BaseModel):
     uploaded_at = db.Column(db.Date, nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey("category.id"))
     
-    category = db.relationship("Category")
+    category = db.relationship("Category",back_populates='rubrics')
 
 
 

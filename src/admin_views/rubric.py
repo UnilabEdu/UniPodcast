@@ -2,7 +2,7 @@
 from flask_admin.form import ImageUploadField
 from uuid import uuid4
 from os import path
-from src.admin_views.base import SecureModelView
+from src.admin_views import SecureModelView
 
 def generate_unique_name(obj,file):
     extension = path.splitext(file.filename)[1]
