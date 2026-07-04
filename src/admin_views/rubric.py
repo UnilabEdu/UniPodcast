@@ -23,7 +23,7 @@ class RubricView(SecureModelView):
             }
     
     column_list = ['img','title' ,'description','uploaded_at']
-    column_filters = ['img','title' ,'description','uploaded_at']
+    column_filters = ['title' ,'description','uploaded_at']
 
     column_formatters = {
         'img': lambda v, c, m, p: Markup(
