@@ -8,6 +8,6 @@ class MessageView(SecureModelView):
 
     column_list = ['name','surname','text','phone_number','seen']
 
-    column_editable_list = ['name','surname','text','phone_number','seen']
+    column_editable_list = ['seen']
     
     column_filters = ['name','surname','text','phone_number','seen']

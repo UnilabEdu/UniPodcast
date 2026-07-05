@@ -12,7 +12,7 @@ class Rubric(BaseModel):
     rubric_link = db.Column(db.String,nullable = True)
 
     category_id = db.Column(db.Integer, db.ForeignKey("category.id"))
-    rubric_link = db.Column(db.String,nullable = True)
+
     
     category = db.relationship("Category",back_populates='rubrics')
 
