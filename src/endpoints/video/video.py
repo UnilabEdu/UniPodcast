@@ -46,7 +46,7 @@ class SliderApi(Resource):
 
 
 @api.route('/latest_videos')
-class LatestVideos(Resource):
+class LatestVideosApi(Resource):
 
     @api.marshal_with(video_model, as_list=True)
     def get(self):
