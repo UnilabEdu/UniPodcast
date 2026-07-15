@@ -1,7 +1,7 @@
 from src.ext import db
 from src.models import BaseModel
 
-class Rubric(BaseModel):
+class News(BaseModel):
     __tablename__ = 'rubric'
 
     title = db.Column(db.String, nullable=False)

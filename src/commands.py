@@ -26,10 +26,10 @@ def populate_db():
                       role='admin')
                 )
     
-    categories = ['ჰუმანიკა',
-                  'ტექ-ინსაითი',
-                  'სამართლის დროა',
-                  'ლაბორატორიიდან საკუთარ თავამდე']
+    categories = ['ტექნოლოგიები და კარიერა',
+                  'სტუდენტური ცხოვრება',
+                  'განათლება და კულტურა',
+                  'ზოგადი']
     
     for category in categories:
         db.session.add(Category(category=category))

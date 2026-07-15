@@ -6,7 +6,7 @@ class MessageView(SecureModelView):
     can_view_details=True
 
 
-    column_list = ['name','surname','text','phone_number','seen']
+    column_list = ['name','surname','email','text','phone_number','seen']
 
     column_editable_list = ['seen']
     

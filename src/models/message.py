@@ -9,6 +9,7 @@ class Message(BaseModel):
     surname = db.Column(db.String(16),nullable = False)
     text = db.Column(db.Text(),nullable=False)
     phone_number = db.Column(db.String(12))
+    email = db.Column(db.String(128),nullable=False)
     company = db.Column(db.String(16))
     company_text = db.Column(db.Text())
     seen = db.Column(db.Boolean, default = False)

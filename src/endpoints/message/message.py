@@ -19,6 +19,7 @@ class MessageApi(Resource):
                     surname = args['surname'],
                     text = args['text'],
                     phone_number = args.get('phone_number'),
+                    email = args['email'],
                     company=args.get('company'),
                     company_text=args.get('company_text')
                      )
@@ -26,6 +27,6 @@ class MessageApi(Resource):
         db.session.commit()
 
         return new_message
-
+        
     
 
