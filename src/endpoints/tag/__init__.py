@@ -1,8 +1,8 @@
 from flask_restx import fields
 from src.ext import api
 
-
-category_model = api.model('category', {
+tags_model = api.model('tag', {
                 'id': fields.Integer,
-                'category': fields.String
+                'name': fields.String
+         
             })

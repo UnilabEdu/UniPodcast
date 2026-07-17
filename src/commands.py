@@ -3,7 +3,7 @@ from flask.cli import with_appcontext
 from click import command
 from werkzeug.security import generate_password_hash
 
-from src.models import User,Category
+from src.models import User,Category,News,Video,Tag,Type
 from src.ext import db
 
 

@@ -1,10 +1,10 @@
 from flask import Flask
 
 from src.admin_views import SecureIndexView
-from src.admin_views import AdminUserView, CategoryView, NewsView, VideoView,MemberView,MessageView
+from src.admin_views import AdminUserView, CategoryView, NewsView, VideoView,MemberView,MessageView,TagView,TypeView,PartnersView
 from src.config import Config
 from src.ext import db, admin, login_manager,migrate,api
-from src.models import User, Category, News, Video,Member,Message
+from src.models import User, Category, News, Video,Member,Message,Type,Tag,Partners
 from src.commands import populate_db,init_db
 from src.endpoints.category.category import CategoryApi
 from src.endpoints.news.news import NewsApi
@@ -12,6 +12,9 @@ from src.endpoints.video.video import VideoApi
 from src.endpoints.member.member import MemberApi
 from src.endpoints.message.message import MessageApi
 from src.endpoints.video.video import LatestVideosApi,SliderApi
+from src.endpoints.partners.partners import PartnersApi
+from src.endpoints.tag.tag import TagsApi
+from src.endpoints.type.type import TypeApi
 
 def create_app():
     app = Flask(__name__)
@@ -45,5 +48,7 @@ def register_extensions(app):
     admin.add_view(VideoView(Video, db.session))
     admin.add_view(MemberView(Member, db.session))
     admin.add_view(MessageView(Message, db.session))
-
+    admin.add_view(TypeView(Type,db.session))
+    admin.add_view(TagView(Tag,db.session))
+    admin.add_view(PartnersView(Partners,db.session))
  

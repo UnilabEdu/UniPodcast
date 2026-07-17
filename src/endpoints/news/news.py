@@ -26,8 +26,8 @@ class NewsApi(Resource):
 
         current_page = page or 1
 
-        news_rubrics = news.paginate(page=current_page,per_page=per_page,error_out=False)
+        news= news.paginate(page=current_page,per_page=per_page,error_out=False)
 
-        return news_rubrics.items,200
+        return news.items,200
     
  
