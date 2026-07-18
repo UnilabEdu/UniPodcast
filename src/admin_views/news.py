@@ -9,7 +9,7 @@ def generate_unique_name(obj,file):
     extension = path.splitext(file.filename)[1]
     return f"{uuid4()}{extension}"
 
-class RubricView(SecureModelView):
+class NewsView(SecureModelView):
     can_create = True
     can_edit = True
     can_delete = True
@@ -18,7 +18,7 @@ class RubricView(SecureModelView):
 
     form_extra_fields = {
             'img':ImageUploadField(
-             base_path=path.join(path.dirname(__file__), '../static/uploads/rubrics'),
+             base_path=path.join(path.dirname(__file__), '../static/uploads/news'),
              namegen=generate_unique_name)
             }
     
@@ -27,7 +27,7 @@ class RubricView(SecureModelView):
 
     column_formatters = {
         'img': lambda v, c, m, p: Markup(
-            f'<img src="/static/uploads/rubrics/{m.img}" width="50" style="border-radius: 4px;">'
+            f'<img src="/static/uploads/news/{m.img}" width="50" style="border-radius: 4px;">'
         )
     }
   

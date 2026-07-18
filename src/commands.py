@@ -3,7 +3,7 @@ from flask.cli import with_appcontext
 from click import command
 from werkzeug.security import generate_password_hash
 
-from src.models import User,Category
+from src.models import User,Category,News,Video,Tag,Type
 from src.ext import db
 
 
@@ -26,10 +26,10 @@ def populate_db():
                       role='admin')
                 )
     
-    categories = ['ჰუმანიკა',
-                  'ტექ-ინსაითი',
-                  'სამართლის დროა',
-                  'ლაბორატორიიდან საკუთარ თავამდე']
+    categories = ['ტექნოლოგიები და კარიერა',
+                  'სტუდენტური ცხოვრება',
+                  'განათლება და კულტურა',
+                  'ზოგადი']
     
     for category in categories:
         db.session.add(Category(category=category))

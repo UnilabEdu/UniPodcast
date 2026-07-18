@@ -1,0 +1,16 @@
+
+from src.models.base import BaseModel
+from src.ext import db
+from src.models.news import tag_news
+from src.models.video import tag_video
+
+class Tag(BaseModel):
+    __tablename__ = 'tags'
+
+    name = db.Column(db.String,nullable = True)
+
+    news = db.relationship('News',secondary=tag_news,back_populates = 'tags')
+    videos = db.relationship('Video',secondary=tag_video,back_populates = 'tags')
+
+    def __str__(self):
+        return self.name
