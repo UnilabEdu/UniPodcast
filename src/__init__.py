@@ -13,7 +13,7 @@ from src.endpoints.member.member import MemberApi
 from src.endpoints.message.message import MessageApi
 from src.endpoints.video.video import LatestVideosApi,SliderApi
 from src.endpoints.partners.partners import PartnersApi
-from src.endpoints.tag.tag import TagsApi
+from src.endpoints.tag.tag import TagApi
 from src.endpoints.type.type import TypeApi
 
 def create_app():

@@ -15,15 +15,24 @@ class NewsView(SecureModelView):
     can_delete = True
     can_view_details = True
 
-
     form_extra_fields = {
             'img':ImageUploadField(
              base_path=path.join(path.dirname(__file__), '../static/uploads/news'),
              namegen=generate_unique_name)
             }
     
-    column_list = ['img','title' ,'description','uploaded_at']
-    column_filters = ['title' ,'description','uploaded_at']
+    column_list = ['category','img','title','tag','type','uploaded_at']
+    column_filters = ['category.category','title' ,'type.name','tag.name']
+
+    column_labels = {
+         'title': 'Title',
+         'type.name': 'Type',
+         'tag.name': 'Tag',
+         'type': 'Type',
+         'tag': 'Tag' ,
+         'category.category': 'Category',
+         'category': 'Category'
+     }
 
     column_formatters = {
         'img': lambda v, c, m, p: Markup(
