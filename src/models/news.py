@@ -13,13 +13,13 @@ class News(BaseModel):
     img = db.Column(db.String(64), nullable=False)
     description = db.Column(db.Text, nullable=False)
     duration = db.Column(db.Time, nullable=False)
-    uploaded_at = db.Column(db.Date, nullable=False)
     news_link = db.Column(db.String,nullable = True)
+    uploaded_at = db.Column(db.Date, nullable=False)
 
     category_id = db.Column(db.Integer, db.ForeignKey("categories.id"))
     category = db.relationship("Category",back_populates='news')
 
-    tags = db.relationship('Tag',secondary=tag_news,back_populates = 'news')
+    tag= db.relationship('Tag',secondary=tag_news,back_populates = 'news')
 
     type_id = db.Column(db.Integer,db.ForeignKey('types.id'))
     type = db.relationship('Type',back_populates ='news')

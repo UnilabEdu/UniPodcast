@@ -2,13 +2,13 @@ from flask_restx import Resource
 from src.ext import api
 
 from src.models import Tag
-from src.endpoints.tag import tags_model
+from src.endpoints.tag import tag_model
 
 
-@api.route('/tags')
-class TagsApi(Resource):
+@api.route('/tag')
+class TagApi(Resource):
 
-    @api.marshal_with(tags_model,as_list=True)
+    @api.marshal_with(tag_model,as_list=True)
     def get(self):
-        tags = Tag.query.all()
-        return tags,200
+        tag = Tag.query.all()
+        return tag,200

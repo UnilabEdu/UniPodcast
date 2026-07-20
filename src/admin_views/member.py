@@ -16,6 +16,7 @@ class MemberView(SecureModelView):
     column_list = ['img','name_surname','role','in_link']
 
     column_filters = ['name_surname','role','in_link']
+    column_labels = {'name_surname':'name, surname'}
 
     column_formatters = {
         'img': lambda v, c, m, p: Markup(

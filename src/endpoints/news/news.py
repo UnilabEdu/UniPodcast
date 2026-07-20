@@ -1,15 +1,15 @@
 from flask_restx import  Resource
-
+import math
 from src.ext import api
 from src.models import News,Category
-from src.endpoints.news import news_filter_parser,news_model 
+from src.endpoints.news import news_filter_parser,news_response_model
 
 
 @api.route('/news')
 class NewsApi(Resource):
 
     @api.expect(news_filter_parser)
-    @api.marshal_with(news_model)
+    @api.marshal_with(news_response_model)
     def get(self):
         args = news_filter_parser.parse_args()
         category_name = args.get('category')
@@ -22,12 +22,28 @@ class NewsApi(Resource):
             if category_filter:
                 news = news.filter(News.category_id==category_filter.id)
             else:
-                return [],200
+                return {
+                    'items':[],
+                     'pagination_info':{
+                          'page':page,
+                          'per_page':per_page,
+                          'total':0,
+                          'total_pages':0                       
+                     }},200
 
-        current_page = page or 1
+            
+        current_page = page 
 
-        news= news.paginate(page=current_page,per_page=per_page,error_out=False)
+        pagination= news.paginate(page=current_page,per_page=per_page,error_out=False)
 
-        return news.items,200
+        return {
+            "items": pagination.items,
+            "pagination_info": {
+            "page": current_page,
+            "per_page": per_page,
+            "total": pagination.total,
+            "total_pages": math.ceil(pagination.total / per_page) if per_page else 0
+            }
+            }, 200
     
  

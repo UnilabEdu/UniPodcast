@@ -1,21 +1,19 @@
-
+import math
 from flask_restx import  Resource
-from sqlalchemy import cast,String
 
 from src.ext import api
 from src.models import Video,Category
-from src.endpoints.video import video_filter_parser,video_model
+from src.endpoints.video import video_filter_parser,video_model,videos_response_model
 
 
 @api.route('/video')
 class VideoApi(Resource):
 
     @api.expect(video_filter_parser)
-    @api.marshal_with(video_model,as_list=True)
+    @api.marshal_with(videos_response_model)
     def get(self):
         args = video_filter_parser.parse_args()
         category_name = args.get('category')
-        video_duration=args.get('duration')
         page = args.get('page')
         per_page = args.get('per_page')
 
@@ -25,15 +23,27 @@ class VideoApi(Resource):
             if category_filter:
                 videos = videos.filter(Video.category_id==category_filter.id)
             else:
-                return [],200
-        if video_duration:
-            videos = videos.filter(cast(Video.duration,String).like(f'%{video_duration}%') )
+                return {
+                    'items':[],
+                     'pagination_info':{
+                          'page':page,
+                          'per_page':per_page,
+                          'total':0,
+                          'total_pages':0                       
+                     }},200
 
-        current_page = page or 1
+        current_page = page 
+        pagination = videos.paginate(page=current_page,per_page=per_page,error_out=False)
 
-        pagin_videos = videos.paginate(page=current_page,per_page=per_page,error_out=False)
-
-        return pagin_videos.items,200
+        return {
+                "items": pagination.items,
+                "pagination_info": {
+                "page": current_page,
+                "per_page": per_page,
+                "total": pagination.total,
+                "total_pages": math.ceil(pagination.total / per_page) if per_page else 0
+                }
+                }, 200
 
 
 @api.route('/slider')

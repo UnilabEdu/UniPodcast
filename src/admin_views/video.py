@@ -2,6 +2,7 @@ from flask_admin.form import ImageUploadField
 from uuid import uuid4
 from markupsafe import Markup
 from os import path
+from flask_admin.form import ImageUploadField
 
 from src.admin_views import generate_unique_name
 from src.admin_views.base import SecureModelView
@@ -19,9 +20,19 @@ class VideoView(SecureModelView):
              namegen=generate_unique_name)
             }
      
-     column_list = ['img','title','description','guests','uploaded_at']
+     column_list = ['img','category','title','tag','type','uploaded_at']
 
-     column_filters = ['title','description','guests','uploaded_at']
+     column_filters = ['category.category','title','type.name','tag.name']
+
+     column_labels = {
+         'title': 'Title',
+         'type.name': 'Type',
+         'tag.name': 'Tag',
+         'type': 'Type',
+         'tag': 'Tag' ,
+         'category.category': 'Category',
+         'category': 'Category'
+     }
 
      column_formatters = {
         'img': lambda v, c, m, p: Markup(

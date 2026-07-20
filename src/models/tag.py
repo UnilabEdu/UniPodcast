@@ -9,8 +9,8 @@ class Tag(BaseModel):
 
     name = db.Column(db.String,nullable = True)
 
-    news = db.relationship('News',secondary=tag_news,back_populates = 'tags')
-    videos = db.relationship('Video',secondary=tag_video,back_populates = 'tags')
+    news = db.relationship('News',secondary=tag_news,back_populates = 'tag')
+    videos = db.relationship('Video',secondary=tag_video,back_populates = 'tag')
 
     def __str__(self):
         return self.name

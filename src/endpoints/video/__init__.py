@@ -18,10 +18,24 @@ video_model = api.model('video', {
                 'guests': fields.String,
                 'duration': fields.String,
                 'uploaded_at': fields.Date,
+                'video_link':fields.String,
                 'in_slider': fields.Integer,
                 'category_id': fields.Integer
 
             })
+pagination_model = api.model("PaginationInfo", {
+                    "page": fields.Integer,
+                    "per_page": fields.Integer,
+                    "total": fields.Integer,
+                    "total_pages": fields.Integer
+                                    })
+
+
+videos_response_model = api.model('Videos',
+                {
+                'items': fields.List(fields.Nested(video_model)),
+                'pagination_info': fields.Nested(pagination_model)
+                })
 
 
 

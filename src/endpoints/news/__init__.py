@@ -18,7 +18,21 @@ news_model = api.model('news', {
                 'img': fields.String,
                 'description': fields.String,
                 'duration': fields.String,
+                'news_link':fields.String,
                 'uploaded_at': fields.Date,
                 'category_id': fields.Integer
 
             })
+
+pagination_model = api.model('PaginationInfo',
+                {
+                'page': fields.Integer,
+                'per_page': fields.Integer,
+                'total': fields.Integer,
+                'total_pages': fields.Integer
+                })
+news_response_model = api.model('News',
+                {
+                'items': fields.List(fields.Nested(news_model)),
+                'pagination_info': fields.Nested(pagination_model)
+                })
