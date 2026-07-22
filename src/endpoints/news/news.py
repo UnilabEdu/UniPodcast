@@ -13,6 +13,8 @@ class NewsApi(Resource):
     def get(self):
         args = news_filter_parser.parse_args()
         category_name = args.get('category')
+        title=args.get('title')
+        
         page = args.get('page')
         per_page = args.get('per_page')
 
@@ -33,7 +35,8 @@ class NewsApi(Resource):
 
             
         current_page = page 
-
+        if title:
+            news=news.filter(News.title.ilike(f"%{title}%"))
         pagination= news.paginate(page=current_page,per_page=per_page,error_out=False)
 
         return {

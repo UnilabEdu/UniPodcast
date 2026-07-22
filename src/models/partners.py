@@ -6,5 +6,5 @@ from src.models.base import BaseModel
 class Partners(BaseModel):
     __tablename__ = 'partners'
 
-    img = db.Column(db.String,nullable = True)
-    link = db.Column(db.String,nullable=True)
+    img = db.Column(db.String,nullable = False)
+    link = db.Column(db.String,nullable=False)

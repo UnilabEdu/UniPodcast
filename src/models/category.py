@@ -5,7 +5,7 @@ from src.models import BaseModel
 class Category(BaseModel):
     __tablename__ = 'categories'
 
-    category = db.Column(db.String(16))
+    category = db.Column(db.String(32))
 
     videos = db.relationship("Video",back_populates="category")
     news = db.relationship("News",back_populates="category")

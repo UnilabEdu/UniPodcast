@@ -5,14 +5,23 @@ from flask_restx.reqparse import RequestParser
 from src.ext import api
 
 video_filter_parser = RequestParser()
-video_filter_parser.add_argument('category',type=str,help='Filter videos by category name')
+video_filter_parser.add_argument('category',type=str,help='Filter  by category name')
+video_filter_parser.add_argument('title',type=str,help = 'Filter by video title')
+video_filter_parser.add_argument('tag',type=str,help='Filter by video tag')
+video_filter_parser.add_argument('type',type=str,help='Filter by video type')
+video_filter_parser.add_argument('YYYY-MM-DD - required format',type= str,help = 'Filter by uploaded date')
+video_filter_parser.add_argument('enter minutes',type=str,help='Filter videos by min_duration ')
+video_filter_parser.add_argument('enter  minutes',type=str,help='Filter videos by max_duration ')
 video_filter_parser.add_argument('duration',type=str,help='Filter videos by duration ')
 video_filter_parser.add_argument('page',type=int,default=1,help='Page number for pagination')
 video_filter_parser.add_argument('per_page',type=int,default =5,help='Number of videos per page')
 
 video_model = api.model('video', {
                 'id': fields.Integer,
+                'category':fields.String,
                 'title': fields.String,
+                'type':fields.String,
+                'tag':fields.String(attribute=lambda x: ", ".join([t.name for t in x.tag])),
                 'img': fields.String,
                 'description': fields.String,
                 'guests': fields.String,
