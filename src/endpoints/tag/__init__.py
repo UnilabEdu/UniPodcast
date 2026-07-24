@@ -3,6 +3,6 @@ from src.ext import api
 
 tag_model = api.model('tag', {
                 'id': fields.Integer,
-                'name': fields.String
-         
+                'name': fields.String,
+  
             })

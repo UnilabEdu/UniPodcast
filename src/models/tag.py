@@ -7,10 +7,10 @@ from src.models.video import tag_video
 class Tag(BaseModel):
     __tablename__ = 'tags'
 
-    name = db.Column(db.String,nullable = True)
+    name = db.Column(db.String,nullable = False)
 
     news = db.relationship('News',secondary=tag_news,back_populates = 'tag')
     videos = db.relationship('Video',secondary=tag_video,back_populates = 'tag')
 
-    def __str__(self):
+    def __repr__(self):
         return self.name
